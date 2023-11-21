@@ -1,0 +1,15 @@
+Create a Database -> use db_name
+
+Show available Database -> show dbs 
+
+Create a Collection -> db.createCollection('collection_name')
+
+Show available collections -> show collections
+
+Delete a Collection -> db.collection_name.drop()
+
+Delete a whole Database -> db.dropDatabase()
+
+Insert in Collection -> db_name.collection_name.insertOne({"name":"neha"})
+
+Update in Collection -> db.collection_name.updateOne({name:"neha"},{$set:{age:'22'}})
