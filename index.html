@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=,h1, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <title>Document</title>
 </head>
+
 <body>
-    <h1> this is heading no 1</h1>
-    <h2>this is heading no 2</h2>
-    <h3>this is heading no 3</h3>
-    <h4>this is heading no 4</h4>
-    <h5>this is heading no 5</h5>
-    <h6>this is heading no 6</h6>
-    <p>Food is any substance consumed to provide nutritional 
-        <br>
-        support and energy to an <i>play</i>organism.[2][3] It can be raw, processed, or formulated and is consumed orally by animals for growth, health, or pleasure. Food is mainly composed of water, lipids, proteins, and carbohydrates. Minerals (e.g., salts) and organic substances (e.g., vitamins) can also be found in food.[4] Plants, algae, and some microorganisms use photosynthesis to make some of their own nutrients.[5] Water is found in many foods and has been defined as a food by itself.[6] Water and fiber have low energy densities, or calories, while fat is the most energy-dense component.[3] Some inorganic (non-food) elements are also essential for plant and animal functioning</p>
-    <table>
-        <tr>
-        <tr>
-            <td>name: pradeep</td>
-        <tr>class: bca b </tr>
-        </tr>
-    </table>
-    <h4>this is my ordered list</h4>
-    <ul type="disc">
-        <li>banana</li>
-        <li>apple</li>
-        <li>grape</li>
-    </ul>
-    <a href="https://www.wikipedia.org/">linked to wikipedia</a>
-    </body>
+
+    <div class="board " id="board">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+    </div>
+
+    <div class="win-message" id="winmessage">
+        <div data-win-message-text></div>
+        <button id="restartButton">Restart</button>
+    </div>
+</body>
+
 </html>

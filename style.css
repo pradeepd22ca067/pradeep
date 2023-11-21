@@ -1,62 +1,174 @@
-*{
-    margin: 0;
-    padding: 0;
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
 }
 
-body{
-    width: 100%;
+body {
+    margin: 0;
+}
+
+.in {
+    margin-left: 100px;
+}
+
+.sub {
+    margin-top: 20px;
+    margin-left: 110px;
+    height: 1000px;
+    width: 1000px;
+    font-size: 16px;
+}
+
+#submit {
+    font-size: 26px;
+}
+
+#submit:hover {
+    background-color: grey;
+}
+
+.board {
+    width: 100vw;
     height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+    height: 90px;
+    width: 90px;
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, #0a0a0a, #3a4452);
-}
-
-.heading{
-    display: flex;
-    justify-content: center;
-    color: red;
-    margin-bottom: 3rem;
-    font-style: italic;
-}
-
-.calculator{
-    border: 1px solid #717377;
-    padding: 20px;
-    border-radius: 16px;
-    background: transparent;
-    box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
-}
-
-input{
-    width: 320px;
-    border: none;
-    padding: 20px;
-    margin: 10px;
-    background: transparent;
-    box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
-    font-size: 40px;
-    text-align: right;
+    background-color: white;
     cursor: pointer;
-    color: #ffffff;
+    border: 1px solid black;
 }
 
-button{
-    border: none;
-    width: 60px;
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+    border-left: none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+    border-right: none;
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+    border-bottom: none;
+}
+
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+.cell.x::after,
+.cell.x::before {
+    background-color: black;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    background-color: grey;
+}
+
+.cell.x::after,
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    width: 13px;
+    height: 90px;
+    position: absolute;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(40deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-40deg);
+}
+
+.cell.circle::before {
+    background-color: black;
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    background-color: grey;
+}
+
+.cell.circle::after,
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    position: absolute;
+    content: '';
+    border-radius: 50px;
+}
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    height: 80px;
+    width: 80px;
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
     height: 60px;
-    margin: 10px;
-    background: transparent;
-    color: #ffffff;
-    font-size: 20px;
-    box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.1);
+    width: 60px;
+    background-color: white;
+}
+
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    background-color: white;
+    border: 1px solid black;
+    padding: .25em .5em;
     cursor: pointer;
 }
 
-.equalBtn{
-    background-color: #fb7c14;
+.winning-message button:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
 }
 
-.operator{
-    color: #6dee0a;
+.winning-message.show {
+    display: flex;
 }
