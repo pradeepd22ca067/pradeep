@@ -1,0 +1,93 @@
+.card{
+    border: 2px solid grey;
+    padding: 20px;
+    width: 200px;
+    margin: 10px;
+    box-shadow: 10px 8px 10px 5px grey;
+}
+
+.heading{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    margin: 1rem;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 10rem;
+}
+img{
+    height: 200px;
+    width: 200px;
+}
+
+#container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card-title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+   
+}
+
+.card-text{
+    display: flex;
+    justify-content: center;
+}
+
+.knowMore{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.cart{
+    margin: 3px;
+}
+
+.wishList{
+    margin: 3px;
+}
+
+.btnDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    cursor: pointer;
+    border: none;
+    margin: .1em;
+  }
+
+  .button {
+    --b: 3px;   /* border thickness */
+    --s: .15em; /* size of the corner */
+    --c: #grey;
+    
+    padding: calc(.05em + var(--s)) calc(.3em + var(--s));
+    color: var(--c);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--c) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid grey;
+    outline-offset: .2em;
+  }
+  .button:hover,
+  .button:focus-visible{
+    --_p: 0px;
+    outline-color: var(--c);
+    outline-offset: .05em;
+  }
+  .button:active {
+    background: var(--c);
+    color: #fff;
+  }
