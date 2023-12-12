@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#about" class="smooth-scroll">About</a></li>
+        <li><a href="#projects" class="smooth-scroll">Projects</a></li>
+        <li><a href="#certificates" class="smooth-scroll">Certificates</a></li>
+        <li><a href="#contact" class="smooth-scroll">Contact</a></li>
+        
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="about" class="section">
+      <div class="about-me">
+        <img src="WhatsApp Image 2023-11-28 at 10.04.50_8a2f34a2.jpg" alt="Profile Photo" class="profile-photo">
+        <h1>Pradeep Kumar L</h1>
+        <p><strong>About me:</strong> I am Pradeep Kumar, currently pursuing a BCA degree at Patrician College of Arts and Science.</p>
+        <p><strong>Skills:</strong> I have a keen interest in web development and possess skills in various programming languages such as HTML, CSS, JavaScript, Node.js, MongoDB, and Bootstrap.</p>
+      </div>
+    </section>
+  </main>
+  
+  
+  <section id="projects" class="section">
+    <h1>Projects</h1>
+    <div class="project-container">
+      <div class="project">
+        <img src="proj1.jpg" alt="Project 1">
+        <p class="label">RUDDO</p>
+      </div>
+      <div class="project">
+        <img src="proj2.jpg" alt="Project 2">
+        <p class="label">CALCULATOR</p>
+      </div>
+      <div class="project">
+        <img src="proj3.jpg" alt="Project 3">
+        <p class="label">TO DO LIST</p>
+      </div>
+      <div class="project">
+        <img src="proj4.jpg" alt="Project 4">
+        <p class="label">SHOPPING SITE</p>
+      </div>
+    </div>
+  </section>
+  
+  
+
+    
+    <section id="certificates" class="section">
+      <h1>Certificates</h1>
+    
+      <div class="certificates-container">
+        <img src="cert.jpg" >
+        <img src="cert2.jpg" >
+        <img src="cert3.jpg" >
+        <img src="cert4.jpg" >
+        <img src="cert5.jpg" >
+        <img src="cert6.jpg" >
+      
+       
+      </div>
+    </section>
+    
+    
+    
+    
+
+
+    <section id="contact" class="section">
+      <h1>Contact Me</h1>
+      <form id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+        <input type="submit" value="Send">
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Pradeep | Contact: pcasd22ca067.com</p>
+  </footer>
+
+  <script>
+    // Smooth scrolling functionality with highlighting active section
+    document.addEventListener('DOMContentLoaded', function() {
+      const smoothScrollLinks = document.querySelectorAll('.smooth-scroll');
+      const sections = document.querySelectorAll('.section');
+
+      for (const link of smoothScrollLinks) {
+        link.addEventListener('click', smoothScroll);
+      }
+
+      window.addEventListener('scroll', highlightSection);
+
+      function smoothScroll(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      }
+
+      function highlightSection() {
+        let scrollPosition = window.scrollY;
+
+        sections.forEach((section) => {
+          if (
+            scrollPosition >= section.offsetTop - 200 &&
+            scrollPosition < section.offsetTop + section.offsetHeight - 200
+          ) {
+            const id = section.getAttribute('id');
+            document.querySelector('.navbar a[href="#' + id + '"]').classList.add('active');
+          } else {
+            const id = section.getAttribute('id');
+            document.querySelector('.navbar a[href="#' + id + '"]').classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
