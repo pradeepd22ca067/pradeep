@@ -1,0 +1,251 @@
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 100;
+  padding: 0;
+  background-color: #1f1f1f; /* darkker backgroundd color */
+  color: #ffffff; /* Text color */
+  transition: background-color 0.3s ease; /* Smooth transition fr background clr */
+}
+
+header {
+  background-color: #0f0f0f; /* Darker header background color */
+  padding: 20px 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Incrfeased shadow for header */
+  transition: background-color 0.3s ease; /* Smooth transition for header background color */
+}
+
+header nav ul {
+  list-style: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  display: inline;
+}
+
+header nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.3s ease; /* Smooth transition for navigation link hover effect */
+}
+
+header nav ul li a:hover {
+  border-bottom-color: #ffffff;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.about-me {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #2f2f2f; /* Slightly lighter background for about-me section */
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease; /* Smooth transition for profile section */
+}
+
+.about-me img {
+  border-radius: 50%; /* Making the profile photo round */
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow for profile photo */
+}
+
+.about-me:hover {
+  transform: scale(1.05); /* Enlarges profile section on hover */
+}
+
+.project {
+  background-color: #2f2f2f; /* Slightly lighter background for project section */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease; /* Smooth transition for project section */
+}
+
+.project:hover {
+  transform: translateY(-10px); /* Elevates project section on hover */
+}
+
+form {
+  max-width: 400px;
+  margin: auto;
+  background-color: #2f2f2f; /* Slightly lighter background for contact form */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  text-align: center;
+  transition: transform 0.3s ease; /* Smooth transition for contact form */
+}
+
+form:hover {
+  transform: translateY(-10px); /* Elevates contact form on hover */
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: calc(100% - 20px); /* Adjusting input width */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #333333; /* Darker input background color */
+  color: #ffffff; /* Text color for inputs */
+}
+
+input[type="submit"] {
+  background-color: #1c6db6;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for submit button */
+}
+
+input[type="submit"]:hover {
+  background-color: #15558c;
+  transform: translateY(-5px); /* Elevates submit button on hover */
+}
+
+.elevating-point {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #1c6db6;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+
+footer {
+  background-color: #0f0f0f; /* Darker footer background color */
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+}
+.certificates-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the gap between certificate images */
+  padding: 20px;
+  background-color: #2f2f2f; /* Slightly lighter background for certificate section */
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow for certificate section */
+  transition: transform 0.3s ease; /* Smooth transition for certificate section */
+}
+
+.certificates-container img {
+  max-width: calc(33.33% - 20px); /* Set the width of each image (minus the gap) to achieve 3 per row */
+  height: auto;
+  border-radius: 6px;
+}
+.certificates-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the gap between certificate images */
+  padding: 20px;
+  background-color: #2f2f2f; /* Slightly lighter background for certificate section */
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow for certificate section */
+  transition: background-color 0.3s ease; /* Smooth transition for certificate section background */
+}
+
+.certificates-container img {
+  max-width: calc(33.33% - 20px); /* Set the width of each image (minus the gap) to achieve 3 per row */
+  height: auto;
+  border-radius: font-weight: bold; /* Making the font bold */
+  transition: transform 0.3s ease; /* Smooth transition for certificate image hover effect */
+}
+
+.certificates-container:hover {
+  background-color: #1f1f1f; /* Change background color on hover */
+}
+
+.certificates-container img:hover {
+  transform: scale(1.05); /* Enlarge the image on hover */
+}
+
+#projects {
+  text-align: center;
+  padding: 30px 0;
+  background-color: #2f2f2f; 
+  transition: background-color 0.3s ease; /* Smooth transition for the background */
+}
+
+#projects:hover {
+  background-color: #1f1f1f; /* Change background color on hover */
+}
+
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.project {
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border-radius: 8px; /* Rounded corners for the container */
+}
+
+.project img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+  border-radius: 8px; /* Rounded corners for the image */
+}
+
+
+
+
+.project:hover {
+  transform: scale(1.05);
+}
+
+#projects {
+  text-align: center;
+  padding: 30px 0;
+  background-color: #2f2f2f; 
+  transition: background-color 0.3s ease; 
+}
+
+#projects:hover {
+  background-color: #1f1f1f; 
+}
+/* For smaller screens (e.g., phones) */
+@media only screen and (max-width: 600px) {
+  header nav ul {
+    flex-direction: column; /* Display links vertically for smaller screens */
+  }
+
+  header nav ul li {
+    display: block; /* Each link occupies full width on smaller screens */
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  header nav ul li a {
+    display: block;
+  }
+}
