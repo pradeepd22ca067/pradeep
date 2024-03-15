@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+ 
+    <style>body {
+    font-family: Arial, sans-serif;
+}
+
+#hangman-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#word-container {
+    margin-bottom: 20px;
+}
+
+#letters-container {
+    margin-bottom: 20px;
+}
+
+.letter {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #000;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#reset-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#reset-button:hover {
+    background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+    <div id="hangman-container">
+        <h1>Hangman Game</h1>
+        <div id="word-container"></div>
+        <div id="letters-container"></div>
+        <button id="reset-button">Reset Game</button>
+    </div>
+
+    <script>const words = ['javascript', 'hangman', 'developer', 'coding', 'computer'];
+let selectedWord = words[Math.floor(Math.random() * words.length)].toUpperCase();
+let remainingGuesses = 6;
+let guessedLetters = new Set();
+
+const wordContainer = document.getElementById('word-container');
+const lettersContainer = document.getElementById('letters-container');
+const resetButton = document.getElementById('reset-button');
+
+// Initialize the game
+function initializeGame() {
+    renderWord();
+    renderLetters();
+    resetButton.addEventListener('click', resetGame);
+}
+
+// Render the word display
+function renderWord() {
+    wordContainer.innerHTML = '';
+    selectedWord.split('').forEach(letter => {
+        const div = document.createElement('div');
+        div.textContent = guessedLetters.has(letter) ? letter : '_';
+        div.classList.add('letter');
+        wordContainer.appendChild(div);
+    });
+}
+
+// Render the available letters
+function renderLetters() {
+    lettersContainer.innerHTML = '';
+    for (let i = 65; i <= 90; i++) {
+        const letter = String.fromCharCode(i);
+        const div = document.createElement('div');
+        div.textContent = letter;
+        div.classList.add('letter');
+        div.addEventListener('click', () => handleLetterClick(letter));
+        lettersContainer.appendChild(div);
+    }
+}
+
+// Handle letter clicks
+function handleLetterClick(letter) {
+    if (!guessedLetters.has(letter)) {
+        guessedLetters.add(letter);
+        if (!selectedWord.includes(letter)) {
+            remainingGuesses--;
+        }
+        renderWord();
+        renderLetters();
+        checkGameStatus();
+    }
+}
+
+// Check game status (win/lose)
+function checkGameStatus() {
+    const word = wordContainer.innerText.replace(/[^A-Z]/g, '');
+    if (word === selectedWord) {
+        alert('Congratulations! You win!');
+        resetGame();
+    } else if (remainingGuesses === 0) {
+        alert('Game over! The word was: ' + selectedWord);
+        resetGame();
+    }
+}
+
+// Reset the game
+function resetGame() {
+    selectedWord = words[Math.floor(Math.random() * words.length)].toUpperCase();
+    remainingGuesses = 6;
+    guessedLetters.clear();
+    renderWord();
+    renderLetters();
+}
+
+initializeGame();
+
+    
+    </script>
+</body>
+</html>
