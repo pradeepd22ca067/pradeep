@@ -1,0 +1,48 @@
+body{
+    padding: 0;
+    background-image: url(https://motionbgs.com/dl/gif/1397);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow:hidden;
+}
+h2{
+    color: black;
+    text-align: center;
+    font-style: oblique;
+    padding-bottom: 0%;
+    
+}
+.login{
+    text-align: center;
+    padding:0;
+    color: azure;
+    padding: 0%;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: auto;
+    background-color: rgba(0,0,0,0.5);
+    height: 225px;
+    width: 200px;
+    border-radius: 10px;
+    
+}
+input{
+    border-radius: 10px ;
+    height: 25px;
+}
+h1{
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-style: oblique;
+    padding: 8%;
+    
+
+    
+}
+button{
+    font-style: oblique;
+    background-color: rgb(17, 161, 251);
+    color: black;
+    font-weight: bold;
+}
