@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Information about Medical Clinic services and contact details.">
+    <title>Medical Clinic</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="logo" href="#home">Medical <span>Clinic</span></a>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav">
+                Menu
+            </button>
+            <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="welcome" id="home">
+            <div class="container welcome-content">
+                <div class="welcome-text">
+                    <p class="small-heading">WELCOME TO MEDICAL CLINIC</p>
+                    <h1>Good health starts with good care.</h1>
+                    <p>We provide friendly, reliable care for you and your family. Get in touch with our team to find out how we can help.</p>
+                    <a class="button" href="#contact">Contact the clinic</a>
+                </div>
+                <div class="welcome-card">
+                    <span class="welcome-icon" aria-hidden="true">+</span>
+                    <h2>Here to help</h2>
+                    <p>From regular check-ups to advice when you need it, our team is ready to listen.</p>
+                    <a href="#services">See our services &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section" id="about">
+            <div class="container narrow-content">
+                <p class="small-heading">ABOUT US</p>
+                <h2>A local clinic with a personal approach</h2>
+                <p>Medical Clinic is here to make it easier to look after your health. We take time to listen, explain your options and help you decide what works for you.</p>
+                <p>Have a question? Give us a call or send a message using the form below.</p>
+            </div>
+        </section>
+
+        <section class="services section" id="services">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="small-heading">WHAT WE DO</p>
+                    <h2>Our services</h2>
+                    <p>Contact us if you have questions about any of our services.</p>
+                </div>
+                <div class="service-list">
+                    <article class="service-card">
+                        <span class="service-number">01</span>
+                        <div>
+                            <h3>General check-ups</h3>
+                            <p>Routine appointments to talk about your health and answer your questions.</p>
+                        </div>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-number">02</span>
+                        <div>
+                            <h3>Family health</h3>
+                            <p>Health advice and care for adults, children and families.</p>
+                        </div>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-number">03</span>
+                        <div>
+                            <h3>Health screenings</h3>
+                            <p>Screening appointments to help you keep track of your health.</p>
+                        </div>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-number">04</span>
+                        <div>
+                            <h3>Wellness advice</h3>
+                            <p>Practical advice to help you build healthy habits that work for you.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section" id="contact">
+            <div class="container contact-layout">
+                <div class="contact-info">
+                    <p class="small-heading">GET IN TOUCH</p>
+                    <h2>Contact us</h2>
+                    <p>For appointments or general questions, call us or send a message. If you have a medical emergency, contact your local emergency services.</p>
+                    <div class="contact-item">
+                        <h3>Phone</h3>
+                        <p>Add the clinic phone number here.</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Address</h3>
+                        <p>Add the clinic address here.</p>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <h3>Send us a message</h3>
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" autocomplete="name" required>
+
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+
+                    <button class="button" type="submit">Submit</button>
+                    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                    <p class="form-note">This demo form does not send messages to the clinic.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>Medical Clinic</p>
+            <p>&copy; 2023 Medical Clinic</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.querySelector('.menu-button');
+        const mainNav = document.querySelector('#main-nav');
+
+        menuButton.addEventListener('click', () => {
+            const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', String(!isOpen));
+            mainNav.classList.toggle('is-open', !isOpen);
+        });
+
+        mainNav.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
+                menuButton.setAttribute('aria-expanded', 'false');
+                mainNav.classList.remove('is-open');
+            }
+        });
+
+        document.querySelector('#contact-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            document.querySelector('#form-status').textContent = 'Thanks for your message. This demo form does not send it to the clinic.';
+            event.currentTarget.reset();
+        });
+    </script>
+</body>
+</html>
