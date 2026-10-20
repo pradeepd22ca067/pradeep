@@ -1,2 +1,0 @@
-pip install gunicorn
-https://student-seating-app.onrender.com/
