@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Pulse - College Event Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --college-primary: #004d99;
+            /* Deep Blue */
+            --college-secondary: #ff7f00;
+            /* Vibrant Orange */
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --bg-light: #f4f6f9;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--college-secondary);
+            transition: color var(--transition-speed);
+        }
+
+        /* 1. Header & Navigation */
+        .header {
+            background: var(--college-primary);
+            color: var(--text-light);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            margin-left: 25px;
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        /* Special style for the QR Generator and Form buttons in the nav */
+        #navQrGenerator,
+        #navGoogleForm {
+            background-color: var(--college-secondary);
+            color: var(--text-dark) !important;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            margin-left: 10px;
+            /* Separator for the new button */
+        }
+
+        #navQrGenerator::after,
+        #navGoogleForm::after {
+            display: none;
+        }
+
+        #navQrGenerator:hover,
+        #navGoogleForm:hover {
+            background-color: #ff9933;
+            transform: scale(1.05);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--college-secondary);
+            transition: width var(--transition-speed) ease-in-out;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 2. Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--college-primary) 0%, #007bff 100%);
+            color: var(--text-light);
+            padding: 120px 5%;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-btn {
+            background-color: var(--college-secondary);
+            color: var(--text-dark);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .btn-des{
+            margin-top: 50px;
+            background-color: var(--college-secondary);
+            color: var(--text-dark);
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            border-radius: 60px;
+            color: white;
+            font-size: medium;
+            font-weight: bold;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 127, 0, 0.5);
+        }
+
+        /* 3. Main Content & Filters */
+        .main-container {
+            padding: 50px 5%;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--college-primary);
+        }
+
+        .filter-bar {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: var(--text-light);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .filter-btn {
+            background: none;
+            border: 2px solid var(--college-primary);
+            color: var(--college-primary);
+            padding: 10px 25px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-speed) ease;
+            outline: none;
+            position: relative;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--college-primary);
+            color: var(--text-light);
+        }
+
+        .filter-btn.active {
+            background-color: var(--college-primary);
+            color: var(--text-light);
+            box-shadow: 0 0 10px rgba(0, 77, 153, 0.6), 0 0 20px rgba(0, 77, 153, 0.4) inset;
+        }
+
+        /* 4. Event Grid & Cards */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .event-card {
+            background-color: var(--text-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed), opacity var(--transition-speed), transform var(--transition-speed);
+            position: relative;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #ccc;
+        }
+
+        .event-info {
+            padding: 25px;
+        }
+
+        .event-date-tag {
+            display: inline-block;
+            background-color: var(--college-secondary);
+            color: var(--text-dark);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .event-location {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #dfe6e9;
+            padding-top: 15px;
+        }
+
+        /* 5. Feedback Section */
+        .feedback-callout {
+            margin-top: 50px;
+            background-color: #ecf0f1;
+            color: var(--text-dark);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        /* 6. Modals (General) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            transition: opacity var(--transition-speed) ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 700px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transform: scale(0.95);
+            transition: transform var(--transition-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: transform var(--transition-speed);
+        }
+
+        .modal-close:hover {
+            color: var(--college-secondary);
+            transform: rotate(90 deg);
+        }
+
+        /* Specific Detail Modal Styles */
+        #detailsModal .detail-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 5px solid var(--college-primary);
+            background-color: #eaf3ff;
+            /* Light blue background */
+            border-radius: 4px;
+        }
+
+        #detailsModal .detail-section h4 {
+            color: var(--college-primary);
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        #detailsModal .detail-info {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* General Form/Iframe Style */
+        .google-form-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+        /* QR Scanner Section Style Update */
+        #qr-scanner-placeholder {
+            height: 150px;
+            width: 150px;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            overflow: hidden;
+        }
+
+        #qr-scanner-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Keyframes */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 10px 5%;
+            }
+
+            .nav-links {
+                padding-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                margin: 5px 8px;
+                font-size: 0.9em;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .filter-btn {
+                display: inline-block;
+                width: auto;
+                margin: 4px;
+                font-size: 0.9em;
+            }
+
+            .event-grid {
+                gap: 20px;
+            }
+
+            .google-form-iframe {
+                height: 450px;
+            }
+
+            #navQrGenerator,
+            #navGoogleForm {
+                margin-top: 5px;
+                margin-left: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">CAMPUS PULSE</div>
+        <nav class="nav-links">
+            <a href="#events">Events Schedule</a>
+            <a href="#submit">Submit Event</a>
+            <a href="#feedback">Feedback</a>
+            <a href="https://docs.google.com/forms/d/1f_THKSVBZpQiZ-gfBgqnqOYVfY_FMQR8TR1cjOPbK1M/edit" id="navGoogleForm" onclick="showGoogleFormCreationModal(); return false;">
+                <i class="fas fa-file-alt"></i> Create Form
+            </a>
+            <a href="https://www.qr-code-generator.com/" id="navQrGenerator" onclick="showQrCode('example', 'QR Generator'); return false;">
+                <i class="fas fa-qrcode"></i> QR Generator
+            </a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Discover Your Campus Life</h1>
+        <p>Your guide to all cultural, academic, and social events happening throughout the year.</p>
+        <a href="#events" class="hero-btn">Explore Events Now</a>
+    </section>
+
+    <section class="main-container" id="qr-checkin">
+        <h2 style="margin-top: 0; color: var(--college-secondary);">Event Check-in ⚡️</h2>
+        <div class="filter-bar" style="text-align: center; border: 2px solid var(--college-primary);">
+            <i class="fas fa-camera" style="font-size: 2.5em; color: var(--college-primary); margin-bottom: 10px;"></i>
+            <h3 style="margin-bottom: 10px;">Quick Registration Scanner</h3>
+            <p style="margin-bottom: 20px; color: #7f8c8d;">Use your camera to scan a ticket QR code for quick event
+                entry.</p>
+            <div id="qr-scanner-placeholder">
+                <img src="qrcode22.svg"
+                    alt="QR Code Scanner Placeholder">
+            </div>
+            <a href="#" class="hero-btn" style="margin-top: 20px;">Manual Check-in</a>
+        </div>
+    </section>
+
+    <main class="main-container" id="events">
+        <h2>Upcoming Events</h2>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-category="all">All Events</button>
+            <button class="filter-btn" data-category="academic">Academic</button>
+            <button class="filter-btn" data-category="cultural">Cultural</button>
+            <button class="filter-btn" data-category="sports">Sports</button>
+            <button class="filter-btn" data-category="social">Social</button>
+        </div>
+
+        <div class="event-grid" id="event-list">
+
+            <div class="event-card" data-category="cultural" data-event-id="talent-show">
+                <img src="../istockphoto-1343545450-612x612.jpg"
+                    alt="Annual Talent Showcase" class="event-image">
+                <div class="event-info">
+                    <span class="event-date-tag">Oct 15 | 7:00 PM</span>
+                    <h3>Annual Talent Showcase</h3>
+                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> University Auditorium</p>
+                    <p data-detail="description" style="font-size: 0.9em; margin-bottom: 10px;">Celebrate campus talent!
+                        Singers, dancers, comedians, and more.</p>
+                    <div class="card-actions">
+                        <a href="#" class="card-link" onclick="showDetailsModal('talent-show'); return false;">View Details <i
+                                class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="card-link" style="color:var(--college-secondary);"
+                            onclick="showRegistrationModal('talent-show'); return false;"><i class="fas fa-ticket-alt"></i>
+                            Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card" data-category="academic" data-event-id="tech-summit">
+                <img src="../techsummit_global_logo.jpg"
+                    alt="Future of Tech Summit" class="event-image">
+                <div class="event-info">
+                    <span class="event-date-tag">Oct 22-23 | All Day</span>
+                    <h3>Future of Tech Summit</h3>
+                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> Engineering Hall, Room 101</p>
+                    <p data-detail="description" style="font-size: 0.9em; margin-bottom: 10px;">Hear from industry
+                        leaders on AI, blockchain, and cyber security.</p>
+                    <div class="card-actions">
+                        <a href="#" class="card-link" onclick="showDetailsModal('tech-summit'); return false;">View Details <i
+                                class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="card-link" style="color:var(--college-secondary);"
+                            onclick="showRegistrationModal('tech-summit'); return false;"><i class="fas fa-ticket-alt"></i>
+                            Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card" data-category="sports" data-event-id="homecoming-game">
+                <img src="../images.jpg" alt="Homecoming Football Game"
+                    class="event-image">
+                <div class="event-info">
+                    <span class="event-date-tag">Oct 29 | 2:00 PM</span>
+                    <h3>Homecoming Football Game</h3>
+                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> Campus Stadium</p>
+                    <p data-detail="description" style="font-size: 0.9em; margin-bottom: 10px;">Cheer on the Eagles!
+                        Food trucks and activities start at noon.</p>
+                    <div class="card-actions">
+                        <a href="#" class="card-link" onclick="showDetailsModal('homecoming-game'); return false;">View Details <i
+                                class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="card-link" style="color:var(--college-secondary);"
+                            onclick="showRegistrationModal('homecoming-game'); return false;"><i class="fas fa-ticket-alt"></i> Get
+                            Tickets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="filter-bar" id="submit"
+            style="margin-top: 50px; background-color: var(--college-primary); color: var(--text-light);">
+            <h3 style="color: var(--text-light); margin-bottom: 15px;">Organize Your Own Event!</h3>
+            <p style="margin-bottom: 20px;">Use our proposal form to get approval and start planning.</p>
+                        <a href="submit_event.html" class="btn-des" style="display:inline-block; margin-top: 5px;">Submit Event</a>
+        </section>
+
+        <section class="feedback-callout" id="feedback">
+            <h3 style="margin-bottom: 10px; color: var(--college-primary);"><i class="fas fa-comment-dots"></i> Give Us
+                Feedback</h3>
+            <p style="margin-bottom: 20px; color: #7f8c8d;">Help us improve future events by submitting your thoughts.
+            </p>
+            <a href="#" class="hero-btn" id="openFeedbackBtn"
+                style="background-color: var(--college-primary); color: var(--text-light); padding: 10px 30px;">Submit
+                Feedback</a>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <center> <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </center>
+        </div>
+        <center>
+            <p>Powered by Campus Pulse | &copy; 2025 [College Name]. All Rights Reserved.</p>
+        </center>
+    </footer>
+
+    <div id="registrationModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeRegistrationModal()">&times;</span>
+            <h3 id="registrationModalTitle"
+                style="text-align: center; margin-bottom: 15px; color: var(--college-secondary);">Event Registration &
+                Payment</h3>
+            <p style="text-align: center; margin-bottom: 10px; font-size: 0.9em;">Please enter your details (Name,
+                College, Address, Phone, DOB) and payment choice below.</p>
+            <iframe src="https://docs.google.com/forms/u/0/" class="google-form-iframe"
+                loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <div id="formModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeFormModal()">&times;</span>
+            <h3 style="text-align: center; margin-bottom: 15px;">Event Proposal & Basic Details</h3>
+            <iframe src="https://docs.google.com/forms/u/0/create" class="google-form-iframe" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <div id="feedbackModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeFeedbackModal()">&times;</span>
+            <h3 style="text-align: center; margin-bottom: 15px; color: var(--college-primary);">Event Feedback: Email &
+                Experiences</h3>
+            <p style="text-align: center; margin-bottom: 10px; font-size: 0.9em;">We value your input. Please provide
+                your Email and share your overall event experience.</p>
+            <iframe src="https://docs.google.com/forms/u/0/" class="google-form-iframe" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <div id="detailsModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeDetailsModal()">&times;</span>
+            <h3 id="detailsModalTitle" style="text-align: center; margin-bottom: 20px; color: var(--college-primary);">
+                Event Details</h3>
+            <div id="detailsContent">
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="#" class="hero-btn"
+                    style="background-color: var(--college-secondary); color: var(--text-dark); padding: 10px 30px;"
+                    onclick="showRegistrationModal('details-page-register'); return false;">Register Now!</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="googleFormCreationModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeGoogleFormCreationModal()">&times;</span>
+            <h3 style="text-align: center; margin-bottom: 15px;">Google Form Creation Link</h3>
+            <div style="text-align: center; padding: 20px;">
+                <p style="margin-bottom: 20px; font-size: 1.1em;">
+                    Click the link below to open a new tab and start creating your own Google Form!
+                </p>
+                <a href="https://docs.google.com/forms/u/0/create" target="_blank" class="hero-btn"
+                    style="background-color: var(--college-primary); color: var(--text-light);">
+                    <i class="fas fa-external-link-alt"></i> Go to Google Forms
+                </a>
+                <p style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">
+                    You will need to use the embed link from your created form to place it in the Proposal, Feedback, or
+                    Registration modals.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="qrModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeQrModal()">&times;</span>
+            <h3 id="qrModalTitle" style="text-align: center; margin-bottom: 15px;">QR Code</h3>
+            <div id="qrImageContainer" style="text-align: center; padding: 20px;">
+                <img id="qrCodeImage" src="" alt="QR Code" style="width: 250px; height: 250px; border: 1px solid #ccc;">
+            </div>
+            <p style="text-align: center; color: var(--college-primary);">Scan this code to jump directly to the
+                registration page!</p>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const eventData = {
+            'talent-show': {
+                title: 'Annual Talent Showcase 🎤',
+                date: 'October 15th, 2025',
+                time: '7:00 PM - 10:00 PM',
+                location: 'University Auditorium (Main Stage)',
+                description: 'A spectacular evening where the brightest stars of our campus shine! From soulful singing and energetic dance routines to stand-up comedy and spoken word poetry, come celebrate the diverse talents of our student body. Judges include local celebrities and faculty. A must-see annual event!',
+                cost: 'Students: $5 | General: $10',
+                organizer: 'Cultural Committee (Contact: cultural@college.edu)',
+                note: 'Registration for performers closes Oct 1st. Audience tickets available at the door.'
+            },
+            'tech-summit': {
+                title: 'Future of Tech Summit 🤖',
+                date: 'October 22nd & 23rd, 2025',
+                time: '9:00 AM - 5:00 PM (Daily)',
+                location: 'Engineering Hall, Room 101 & Atrium',
+                description: 'A two-day conference featuring keynote speakers from leading tech companies, hands-on workshops on AI and Blockchain, and a student pitch competition. Explore the cutting edge of technology and network with industry professionals. Earn 5 professional development credits.',
+                cost: 'Free for all students (Registration required)',
+                organizer: 'Computer Science Club (Contact: techsummit@college.edu)',
+                note: 'Free lunch and coffee provided on both days. Bring your laptop for workshops.'
+            },
+            'homecoming-game': {
+                title: 'Homecoming Football Game 🏈',
+                date: 'October 29th, 2025',
+                time: '2:00 PM Kick-off (Activities start at 12:00 PM)',
+                location: 'Campus Stadium (The Eagle Nest)',
+                description: 'Watch our Eagles take on their rivals! The day is packed with activities, including a pre-game tailgating party with food trucks, a marching band show, and the crowning of the Homecoming King and Queen at halftime.',
+                cost: 'Students: Free with ID | General: $15',
+                organizer: 'Athletics Department & Student Life',
+                note: 'Wear your school colors: Blue & Orange! The after-party is at the Student Union.'
+            }
+        };
+
+        const detailsModal = document.getElementById('detailsModal');
+        const detailsModalTitle = document.getElementById('detailsModalTitle');
+        const detailsContent = document.getElementById('detailsContent');
+        const registrationModal = document.getElementById('registrationModal');
+        const formModal = document.getElementById('formModal');
+        const feedbackModal = document.getElementById('feedbackModal');
+        const googleFormCreationModal = document.getElementById('googleFormCreationModal');
+        const qrModal = document.getElementById('qrModal');
+        const qrCodeImage = document.getElementById('qrCodeImage');
+        const qrModalTitle = document.getElementById('qrModalTitle');
+
+        function openModal(modal) {
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeModal(modal) {
+            if (modal) modal.classList.remove('active');
+        }
+
+        function showDetailsModal(eventId) {
+            const data = eventData[eventId];
+            if (!data || !detailsModal || !detailsModalTitle || !detailsContent) return;
+
+            detailsModalTitle.textContent = data.title;
+            detailsContent.innerHTML = `
+                <div class="detail-section">
+                    <h4><i class="fas fa-calendar-alt"></i> Date & Time</h4>
+                    <p class="detail-info">${data.date} | ${data.time}</p>
+                </div>
+                <div class="detail-section">
+                    <h4><i class="fas fa-map-marked-alt"></i> Location</h4>
+                    <p class="detail-info">${data.location}</p>
+                </div>
+                <div class="detail-section">
+                    <h4><i class="fas fa-info-circle"></i> Event Overview</h4>
+                    <p class="detail-info">${data.description}</p>
+                </div>
+                <div class="detail-section">
+                    <h4><i class="fas fa-dollar-sign"></i> Cost</h4>
+                    <p class="detail-info">${data.cost}</p>
+                </div>
+                <div class="detail-section">
+                    <h4><i class="fas fa-user-tie"></i> Organizer/Contact</h4>
+                    <p class="detail-info">${data.organizer}</p>
+                </div>
+                <div class="detail-section" style="border-left-color: var(--college-secondary); background-color: #fff4e5;">
+                    <h4><i class="fas fa-sticky-note"></i> Important Note</h4>
+                    <p class="detail-info">${data.note}</p>
+                </div>
+            `;
+
+            openModal(detailsModal);
+            return false;
+        }
+
+        function closeDetailsModal() {
+            closeModal(detailsModal);
+        }
+
+        function showRegistrationModal(eventId) {
+            const eventLabel = eventId ? eventId.replace(/-/g, ' ') : 'event';
+            const title = document.getElementById('registrationModalTitle');
+            if (title) {
+                title.textContent = 'Event Registration & Payment - ' + eventLabel.replace(/\b\w/g, char => char.toUpperCase());
+            }
+            openModal(registrationModal);
+            return false;
+        }
+
+        function closeRegistrationModal() {
+            closeModal(registrationModal);
+        }
+
+        function showFormModal() {
+            openModal(formModal);
+            return false;
+        }
+
+        function closeFormModal() {
+            closeModal(formModal);
+        }
+
+        function showFeedbackModal() {
+            openModal(feedbackModal);
+            return false;
+        }
+
+        function closeFeedbackModal() {
+            closeModal(feedbackModal);
+        }
+
+        function showGoogleFormCreationModal() {
+            openModal(googleFormCreationModal);
+            return false;
+        }
+
+        function closeGoogleFormCreationModal() {
+            closeModal(googleFormCreationModal);
+        }
+
+        function showQrCode(value, title) {
+            const codeValue = (value || 'Campus Pulse Events').trim();
+            qrCodeImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + encodeURIComponent(codeValue);
+            qrModalTitle.textContent = title || 'QR Code';
+            openModal(qrModal);
+            return false;
+        }
+
+        function closeQrModal() {
+            closeModal(qrModal);
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                const category = button.getAttribute('data-category');
+                document.querySelectorAll('.filter-btn').forEach(function (item) {
+                    item.classList.toggle('active', item === button);
+                });
+
+                document.querySelectorAll('.event-card').forEach(function (card) {
+                    const matches = category === 'all' || card.getAttribute('data-category') === category;
+                    card.style.display = matches ? 'block' : 'none';
+                });
+            });
+        });
+
+        const openFeedbackBtn = document.getElementById('openFeedbackBtn');
+        if (openFeedbackBtn) {
+            openFeedbackBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+                showFeedbackModal();
+            });
+        }
+
+        document.querySelectorAll('.modal-overlay').forEach(function (modal) {
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+
+        window.showDetailsModal = showDetailsModal;
+        window.closeDetailsModal = closeDetailsModal;
+        window.showRegistrationModal = showRegistrationModal;
+        window.closeRegistrationModal = closeRegistrationModal;
+        window.showFormModal = showFormModal;
+        window.closeFormModal = closeFormModal;
+        window.showFeedbackModal = showFeedbackModal;
+        window.closeFeedbackModal = closeFeedbackModal;
+        window.showGoogleFormCreationModal = showGoogleFormCreationModal;
+        window.closeGoogleFormCreationModal = closeGoogleFormCreationModal;
+        window.showQrCode = showQrCode;
+        window.closeQrModal = closeQrModal;
+    });
+    </script>
+
+<div id="detailsModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeDetailsModal()">&times;</span> 
+        
+        <h3 id="detailsModalTitle" style="text-align: center; margin-bottom: 20px; color: var(--college-primary);">Event Details</h3>
+        
+        <div id="detailsContent">
+            </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="#" class="hero-btn" style="background-color: var(--college-secondary); color: var(--text-dark); padding: 10px 30px;" onclick="showRegistrationModal('details-page-register'); return false;">Register Now!</a>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
