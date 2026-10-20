@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Room {{ arrangement["room_no"] }} Seating</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+  <style>
+    main { max-width: 1100px; margin: 28px auto; padding: 0 16px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+    .actions a { padding: 10px 14px; color: white; background: #287a45; border-radius: 5px; text-decoration: none; }
+    .table-wrap { overflow-x: auto; background: white; border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+    th { background: #287a45; color: white; }
+  </style>
+</head>
+<body>
+  <header class="college-header">
+    <img src="{{ url_for('static', filename='images/pat.jpeg') }}" alt="College logo">
+    Patrician College of Arts and Science
+  </header>
+  <nav class="topnav">
+    <a href="{{ url_for('show_student') }}">Arrangements</a>
+    <a href="{{ url_for('student_lookup') }}">Find My Seat</a>
+    <a href="{{ url_for('arrangement_history') }}">History</a>
+  </nav>
+  <main>
+    <h1>Room {{ arrangement["room_no"] }} Seating</h1>
+    <p>{{ arrangement["exam_date"] }} · {{ arrangement["session"] }} · Shift {{ arrangement["shift"] }}
+      · {{ assignments|length }} students</p>
+    <div class="actions">
+      <a href="{{ url_for('print_arrangement', arrangement_id=arrangement['id']) }}">Print / Save as PDF</a>
+      <a href="{{ url_for('download_arrangement', arrangement_id=arrangement['id']) }}">Download Excel</a>
+      <a href="{{ url_for('student_lookup') }}">Look up a roll number</a>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Roll number</th><th>Department</th><th>Subject code</th><th>Seat number</th><th>Row</th><th>Column</th></tr></thead>
+        <tbody>
+          {% for assignment in assignments %}
+          <tr><td>{{ assignment["roll_no"] }}</td><td>{{ assignment["department"] }}</td>
+            <td>{{ assignment["subject_code"] }}</td><td>{{ assignment["seat_no"] }}</td><td>{{ assignment["row"] }}</td>
+            <td>{{ assignment["column"] }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Room</title>
+  <link rel="stylesheet" type="text/css" href="/static/home.css">
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 0; }
+    .container { width: 50%; margin: auto; padding: 20px; background: #f2f2f2; border-radius: 5px; }
+    form { display: flex; flex-direction: column; align-items: center; }
+    input { margin: 10px; padding: 8px; width: 80%; font-size: 16px; }
+    .btn { padding: 10px 15px; margin: 10px; text-decoration: none; border-radius: 5px; font-size: 16px; }
+    .save-btn { background: green; color: white; }
+    .cancel-btn { background: red; color: white; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Edit Room</h2>
+    <form method="POST">
+      <label>Room No:</label>
+      <input type="text" name="room_no" value="{{ data['room_no'] }}" readonly>
+
+      <label>Columns:</label>
+      <input type="number" name="columns" value="{{ data['col'] }}" required>
+
+      <label>Rows:</label>
+      <input type="number" name="rows" value="{{ data['row'] }}" required>
+
+      <label>Total Seats:</label>
+      <input type="number" name="total_seats" value="{{ data['seat'] }}" required>
+
+      <button type="submit" class="btn save-btn">Save</button>
+      <a href="/" class="btn cancel-btn">Cancel</a>
+    </form>
+  </div>
+
+</body>
+</html>
