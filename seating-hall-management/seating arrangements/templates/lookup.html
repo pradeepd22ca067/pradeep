@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find My Seat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+  <style>
+    main { max-width: 760px; margin: 28px auto; padding: 0 16px; }
+    .panel, .result { padding: 20px; margin: 16px 0; background: white; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+    input[type=number] { width: 100%; padding: 12px; margin: 8px 0; box-sizing: border-box; }
+    button { padding: 12px 18px; border: 0; border-radius: 5px; color: white; background: #287a45; cursor: pointer; }
+    .error { color: #a21b1b; }
+  </style>
+</head>
+<body>
+  <header class="college-header">
+    <img src="{{ url_for('static', filename='images/pat.jpeg') }}" alt="College logo">
+    Patrician College of Arts and Science
+  </header>
+  <nav class="topnav">
+    <a href="{{ url_for('show_student') }}">Arrangements</a>
+    <a class="active" href="{{ url_for('student_lookup') }}">Find My Seat</a>
+    <a href="{{ url_for('login') }}">Logout</a>
+  </nav>
+  <main>
+    <h1>Find Your Exam Seat</h1>
+    <form class="panel" method="post">
+      <label for="roll_no">Enter your roll number</label>
+      <input id="roll_no" name="roll_no" type="number" min="1" step="1" value="{{ roll_number }}" required>
+      <button type="submit">Find my seat</button>
+      {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+    </form>
+    {% for match in matches %}
+    <article class="result">
+      <h2>Room {{ match.arrangement["room_no"] }} · Seat {{ match.assignment["seat_no"] }}</h2>
+      <p>Row {{ match.assignment["row"] }}, Column {{ match.assignment["column"] }}</p>
+      <p>Exam: {{ match.arrangement["exam_date"] }} · {{ match.arrangement["session"] }} · Shift {{ match.arrangement["shift"] }}</p>
+      <p>Department: {{ match.assignment["department"] }} · Subject: {{ match.assignment["subject_code"] }}</p>
+      <a href="{{ url_for('arrangement_detail', arrangement_id=match.arrangement['id']) }}">View the full seating chart</a>
+    </article>
+    {% endfor %}
+  </main>
+</body>
+</html>

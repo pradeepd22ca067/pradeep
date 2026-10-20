@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HOME</title>
+    <link rel="stylesheet" type="text/css" href="/static/home.css">
+    <style>
+        /* College Header */
+        .college-header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation Bar */
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        .topnav a {
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Background Image Section */
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url("/static/images/istockphoto.jpg") no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* Text Overlay */
+        .overlay-text {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+        }
+
+        .overlay-text h1 {
+            font-size: 35px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .overlay-text p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .college-header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Space between logo and text */
+        }
+        
+        .college-header img {
+            height: 50px; /* Adjust size */
+            width: auto; /* Maintain aspect ratio */
+        }
+        h1{
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- College Header -->
+    <div class="college-header">
+        <img src="/static/images/pat.jpeg" alt="College Logo">
+        Patrician College of Arts and Science
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/contact">Contact</a>
+        <a href="/About">About</a>
+    </div>
+
+    <!-- Single Image with Text -->
+    <div class="image-container">
+        <div class="overlay-text">
+            <h1>EXAM HALL SEAT ALLOCATION SYSTEM</h1>
+            <p>The purpose of developing the exam hall seating arrangement system is to digitalize the traditional way of conducting exams...</p>
+        </div>
+    </div>
+
+</body>
+</html>
