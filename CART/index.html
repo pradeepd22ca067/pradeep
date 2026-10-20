@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f6f4ef">
+    <meta name="description" content="Discover everyday essentials and considered finds at Noma Market.">
+    <title>Noma Market — Find your next favorite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="announcement">A little something for your everyday <span>·</span> Free shipping on orders over $50</div>
+
+    <header class="site-header">
+        <a class="brand" href="#" aria-label="Noma Market home"><span class="brand-mark">n</span> noma<span class="brand-light">market</span></a>
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="#shop">Shop all</a>
+            <a href="#shop" data-nav-category="clothing">Clothing</a>
+            <a href="#shop" data-nav-category="jewelery">Accessories</a>
+            <a href="#about">Our story</a>
+        </nav>
+        <div class="header-actions">
+            <label class="search-box">
+                <span class="search-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg>
+                </span>
+                <input id="searchInput" type="search" placeholder="Search products" aria-label="Search products">
+                <kbd>Ctrl K</kbd>
+            </label>
+            <button class="cart-button" id="cartButton" type="button" aria-label="Shopping bag, 0 items">
+                <span class="bag-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M5.5 8h13l1 12h-15l1-12Z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg>
+                </span>
+                <span class="cart-label">Bag</span>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="about">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="eyebrow-line"></span> GOOD THINGS, FOUND</p>
+                <h1>Find your next<br><em>favorite thing.</em></h1>
+                <p class="hero-description">Everyday essentials and little luxuries, picked to make the ordinary feel a bit more special.</p>
+                <a class="hero-link" href="#shop">Explore the collection <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+                <div class="hero-sun"></div>
+                <div class="hero-circle circle-one"></div>
+                <div class="hero-circle circle-two"></div>
+                <div class="hero-sticker">A good<br>find, always</div>
+                <div class="hero-caption"><span>01 / 04</span><span>THE EVERYDAY EDIT</span></div>
+            </div>
+            <div class="hero-vertical" aria-hidden="true">MADE FOR THE MOMENTS IN BETWEEN</div>
+        </section>
+
+        <section class="shop-section" id="shop">
+            <div class="shop-heading">
+                <div>
+                    <p class="eyebrow">THE GOOD STUFF</p>
+                    <h2>Shop the collection<span class="heading-dot">.</span></h2>
+                </div>
+                <p class="product-total" id="productTotal">A few favorites, all in one place.</p>
+            </div>
+            <div class="shop-toolbar">
+                <div class="category-list" id="categoryList" aria-label="Filter products by category">
+                    <button class="category-chip active" type="button" data-category="all">Everything</button>
+                </div>
+                <label class="sort-control">Sort by
+                    <select id="sortSelect" aria-label="Sort products">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: low to high</option>
+                        <option value="price-high">Price: high to low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                </label>
+            </div>
+            <p class="status-message" id="statusMessage" role="status">Finding the good stuff…</p>
+            <div class="product-grid" id="container" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand footer-brand" href="#"><span class="brand-mark">n</span> noma<span class="brand-light">market</span></a>
+        <p>Good things for wherever life takes you.</p>
+        <span>© 2023 Noma Market</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
