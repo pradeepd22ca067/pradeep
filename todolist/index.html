@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6fb">
+    <title>Daylist — Make room for what matters</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="#" aria-label="Daylist home">
+                <span class="brand-mark" aria-hidden="true">✓</span>
+                <span>daylist</span>
+            </a>
+            <p class="topbar-note">A little progress goes a long way.</p>
+        </header>
+
+        <section class="welcome" aria-labelledby="page-title">
+            <p class="eyebrow">YOUR PERSONAL SPACE</p>
+            <h1 id="page-title">Make room for<br class="mobile-break"> what matters.</h1>
+            <p class="welcome-copy">Get it out of your head and onto your list.</p>
+        </section>
+
+        <section class="task-card" aria-label="Your tasks">
+            <form class="input-container" id="todo-form">
+                <label class="visually-hidden" for="todo-input">Add a task</label>
+                <input
+                    type="text"
+                    class="todo-input"
+                    id="todo-input"
+                    placeholder="What do you need to do?"
+                    maxlength="160"
+                    autocomplete="off"
+                    required
+                >
+                <button class="add-todo" type="submit">
+                    <span aria-hidden="true">+</span>
+                    <span>Add task</span>
+                </button>
+            </form>
+
+            <div class="list-heading">
+                <div>
+                    <h2>Your tasks</h2>
+                    <p class="task-count" id="task-count" aria-live="polite">0 tasks left</p>
+                </div>
+                <button class="clear-completed" id="clear-completed" type="button" hidden>Clear completed</button>
+            </div>
+
+            <div class="list-controls">
+                <div class="filters" role="group" aria-label="Filter tasks">
+                    <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+                    <button class="filter-button" type="button" data-filter="active" aria-pressed="false">To do</button>
+                    <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">Done</button>
+                </div>
+                <span class="progress-label" id="progress-label">0% complete</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="Task completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span class="progress-fill" id="progress-fill"></span>
+            </div>
+
+            <ul class="todos-list" id="todos-list" aria-live="polite"></ul>
+            <p class="empty-state" id="empty-state">
+                <span class="empty-icon" aria-hidden="true">✦</span>
+                <strong>Nothing on your list yet</strong>
+                <span>Add a task above and take it one step at a time.</span>
+            </p>
+        </section>
+
+        <footer class="app-footer">One thing at a time. You’ve got this.</footer>
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
